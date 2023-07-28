@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:ecommerce/components/app_urls.dart';
 import 'package:ecommerce/repositry/base_repositry.dart';
-import 'package:flutter/material.dart';
 
 class StoreApiRepository extends BaseRepository {
   //get for product details
@@ -18,7 +17,15 @@ class StoreApiRepository extends BaseRepository {
   Future ProductParticularDetails(int productId) async {
     final apiUrl = '${AppUrl.product}/$productId';
     final response = await getHttp(api: apiUrl);
-    log(response.body, name: 'getProductetails');
+    log(response.body, name: 'getProduParticulaid');
+    return json.decode(response.body);
+  }
+
+  //get for product categories
+  Future ProductCategory() async {
+    final apiUrl = AppUrl.productcategory;
+    final response = await getHttp(api: apiUrl);
+    log(response.body, name: 'getProducteCategory');
     return json.decode(response.body);
   }
 
@@ -26,6 +33,14 @@ class StoreApiRepository extends BaseRepository {
     final url = '${AppUrl.product}/roducts?limit=$limit';
     final response = await getHttp(api: url);
     log(response.body, name: 'getproductlimits');
+    return json.decode(response.body);
+  }
+
+  Future Categoryitems(String categoryitems) async {
+    final url = AppUrl.productcategory + categoryitems;
+    log(url);
+    final response = await getHttp(api: url);
+    log(response.body, name: 'getproductitems');
     return json.decode(response.body);
   }
 }

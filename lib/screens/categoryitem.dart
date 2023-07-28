@@ -2,30 +2,25 @@ import 'package:ecommerce/provider/ecommerce_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProductDescriptions extends StatefulWidget {
-  final int productId;
-
-  const ProductDescriptions({super.key, required this.productId});
+class CategoryItemsScreen extends StatefulWidget {
+  String category;
+  CategoryItemsScreen({super.key, required this.category});
 
   @override
-  State<ProductDescriptions> createState() => _ProductDescriptionsState();
+  State<CategoryItemsScreen> createState() => _CategoryItemsScreenState();
 }
 
-class _ProductDescriptionsState extends State<ProductDescriptions> {
+class _CategoryItemsScreenState extends State<CategoryItemsScreen> {
   @override
   void initState() {
     Provider.of<ProductProvider>(context, listen: false)
-        .fetchProductById(widget.productId);
+        .getproductitems(widget.category);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Product Description'),
-        backgroundColor: Colors.cyan,
-      ),
       body: Consumer<ProductProvider>(
         builder: (context, productProvider, _) => productProvider.product ==
                 null
@@ -45,8 +40,8 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                             image: DecorationImage(
-                              image:
-                                  NetworkImage(productProvider.product!.image),
+                              image: NetworkImage(
+                                  productProvider.categoryes!.image),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -69,7 +64,7 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          productProvider.product!.title,
+                                          productProvider.categoryes!.title,
                                           style: TextStyle(
                                               fontSize: 12.0,
                                               color: Colors.black,
@@ -77,7 +72,7 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                                           maxLines: 5,
                                         ),
                                         Text(
-                                          productProvider.product!.category
+                                          productProvider.categoryes!.category
                                               .toString(),
                                           style: TextStyle(
                                               color: Colors.black,
@@ -96,7 +91,7 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                                     Column(
                                       children: [
                                         Text(
-                                          "\$${productProvider.product!.price.toString()}",
+                                          "\$${productProvider.categoryes!.price.toString()}",
                                           style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                           ),
