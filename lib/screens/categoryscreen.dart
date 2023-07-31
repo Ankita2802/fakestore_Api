@@ -12,13 +12,13 @@ class MyHomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Categories'),
+        title: const Text('Categories'),
       ),
       body: Consumer<ProductProvider>(
         builder: (context, provider, child) {
           final categories = provider.categories;
           return categories.isEmpty
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : ListView.builder(

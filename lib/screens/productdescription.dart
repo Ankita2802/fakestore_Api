@@ -1,4 +1,5 @@
 import 'package:ecommerce/provider/ecommerce_provider.dart';
+import 'package:ecommerce/screens/cartscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,7 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
   void initState() {
     Provider.of<ProductProvider>(context, listen: false)
         .fetchProductById(widget.productId);
+
     super.initState();
   }
 
@@ -40,8 +42,8 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height / 2,
-                          width: MediaQuery.of(context).size.width / 2,
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          width: MediaQuery.of(context).size.width * 0.4,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                             image: DecorationImage(
@@ -51,11 +53,11 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Card(
-                          child: Container(
+                          child: SizedBox(
                             height: MediaQuery.of(context).size.height * 0.15,
                             width: MediaQuery.of(context).size.width,
                             child: Padding(
@@ -70,7 +72,7 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                                       children: [
                                         Text(
                                           productProvider.product!.title,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 12.0,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
@@ -79,14 +81,14 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                                         Text(
                                           productProvider.product!.category
                                               .toString(),
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.w800,
                                               fontSize: 10.0),
                                         )
                                       ].map((child) {
                                         return Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               bottom:
                                                   10.0), // Set your desired bottom padding here
                                           child: child,
@@ -103,7 +105,7 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                                         ),
                                         Row(
                                           children: [
-                                            Icon(
+                                            const Icon(
                                               Icons.star,
                                               size: 20.0,
                                               color: Colors.cyan,
@@ -115,7 +117,7 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                                         )
                                       ].map((child) {
                                         return Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               bottom:
                                                   10.0), // Set your desired bottom padding here
                                           child: child,
@@ -126,10 +128,10 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
-                        Text(
+                        const Text(
                           "Product Details",
                           style: TextStyle(
                               fontSize: 20.0, fontWeight: FontWeight.bold),
@@ -141,6 +143,31 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CartScreen(
+                                        Userid: productProvider.product!.id)));
+                          },
+                          child: Container(
+                            height: 40,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: Colors.cyan),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Icon(Icons.shopping_cart),
+                                  Text("Add to Cart")
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),

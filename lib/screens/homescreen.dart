@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:ecommerce/components/app_customappbar.dart';
-import 'package:ecommerce/model/product_model.dart';
 import 'package:ecommerce/provider/ecommerce_provider.dart';
+import 'package:ecommerce/screens/addproductscreen.dart';
 import 'package:ecommerce/screens/productdescription.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +36,13 @@ class _HomeViewState extends State<HomeView> {
             _buildProductsList(),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AddProductScreen()));
+        },
+        child: const Text("Add Product"),
       ),
     );
   }
@@ -154,34 +159,6 @@ class _HomeViewState extends State<HomeView> {
         ),
         IconButton(onPressed: () {}, icon: const Icon(Icons.filter_list)),
       ],
-    );
-  }
-
-  Container _buildCategoriesRow() {
-    return Container(
-      height: 35.0,
-      margin: const EdgeInsets.only(top: 16),
-      child: ListView.builder(
-        itemCount: categories.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => Container(
-          margin: const EdgeInsets.only(right: 8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4.0),
-            color: index == 0 ? Colors.black87 : Colors.transparent,
-          ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16.0,
-            vertical: 8.0,
-          ),
-          child: Text(
-            categories[index],
-            style: TextStyle(
-              color: index == 0 ? Colors.white : Colors.black,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
