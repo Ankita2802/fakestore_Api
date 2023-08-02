@@ -1,6 +1,5 @@
 import 'package:ecommerce/screens/accountscreen.dart';
 import 'package:ecommerce/screens/categoryscreen.dart';
-import 'package:ecommerce/screens/fakeapi/getuser.dart';
 import 'package:ecommerce/screens/homescreen.dart';
 import 'package:ecommerce/screens/morescree.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   // ignore: non_constant_identifier_names
   List Pages = [
     HomeView(),
-    MyHomePage(),
+    CategoryScreen(),
     const MoreSCreen(),
     const AccountScreen(),
   ];

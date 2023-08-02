@@ -1,77 +1,65 @@
 class UserModel {
-  int? id;
-  String? name;
-  String? username;
-  String? email;
-  Address? address;
-  String? phone;
-  String? website;
-  Company? company;
+  final int page;
+  final int perPage;
+  final int total;
+  final int totalPages;
+  final List<Datum> data;
+  final Support support;
 
-  UserModel(
-      {this.id,
-      this.name,
-      this.username,
-      this.email,
-      this.address,
-      this.phone,
-      this.website,
-      this.company});
+  UserModel({
+    required this.page,
+    required this.perPage,
+    required this.total,
+    required this.totalPages,
+    required this.data,
+    required this.support,
+  });
 
-  UserModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    username = json['username'];
-    email = json['email'];
-    address =
-        json['address'] != null ? Address.fromJson(json['address']) : null;
-    phone = json['phone'];
-    website = json['website'];
-    company =
-        json['company'] != null ? Company.fromJson(json['company']) : null;
-  }
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+        page: json["page"],
+        perPage: json["per_page"],
+        total: json["total"],
+        totalPages: json["total_pages"],
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        support: Support.fromJson(json["support"]),
+      );
 }
 
-class Address {
-  String? street;
-  String? suite;
-  String? city;
-  String? zipcode;
-  Geo? geo;
+class Datum {
+  final int id;
+  final String email;
+  final String firstName;
+  final String lastName;
+  final String avatar;
 
-  Address({this.street, this.suite, this.city, this.zipcode, this.geo});
+  Datum({
+    required this.id,
+    required this.email,
+    required this.firstName,
+    required this.lastName,
+    required this.avatar,
+  });
 
-  Address.fromJson(Map<String, dynamic> json) {
-    street = json['street'];
-    suite = json['suite'];
-    city = json['city'];
-    zipcode = json['zipcode'];
-    geo = json['geo'] != null ? Geo.fromJson(json['geo']) : null;
-  }
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        id: json["id"],
+        email: json["email"],
+        firstName: json["first_name"],
+        lastName: json["last_name"],
+        avatar: json["avatar"],
+      );
 }
 
-class Geo {
-  String? lat;
-  String? lng;
+class Support {
+  final String url;
+  final String text;
 
-  Geo({this.lat, this.lng});
+  Support({
+    required this.url,
+    required this.text,
+  });
 
-  Geo.fromJson(Map<String, dynamic> json) {
-    lat = json['lat'];
-    lng = json['lng'];
-  }
-}
-
-class Company {
-  String? name;
-  String? catchPhrase;
-  String? bs;
-
-  Company({this.name, this.catchPhrase, this.bs});
-
-  Company.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    catchPhrase = json['catchPhrase'];
-    bs = json['bs'];
-  }
+  factory Support.fromJson(Map<String, dynamic> json) => Support(
+        url: json["url"],
+        text: json["text"],
+      );
 }

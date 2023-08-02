@@ -23,8 +23,8 @@ class _PostScreenState extends State<PostScreen> {
           title: const Text("Users Data"),
         ),
         body: Consumer<ProductProvider>(
-          builder: (context, _post, child) {
-            final post = _post.posts;
+          builder: (context, postdata, child) {
+            final post = postdata.posts;
             return post == null
                 ? const Center(
                     child: CircularProgressIndicator(),
@@ -39,7 +39,7 @@ class _PostScreenState extends State<PostScreen> {
                             Text(post[index].title.toString()),
                             Text(post[index].body.toString()),
                             GestureDetector(
-                                onTap: () {}, child: Icon(Icons.edit))
+                                onTap: () {}, child: const Icon(Icons.edit))
                           ],
                         ),
                       );

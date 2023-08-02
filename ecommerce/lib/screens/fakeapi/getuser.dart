@@ -1,4 +1,4 @@
-import 'package:ecommerce/model/userModel.dart';
+import 'package:ecommerce/provider/apiusers_provider.dart';
 import 'package:ecommerce/provider/ecommerce_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +13,7 @@ class UserScreeb extends StatefulWidget {
 class _UserScreebState extends State<UserScreeb> {
   @override
   void initState() {
-    Provider.of<ProductProvider>(context, listen: false).fetchUser();
+    Provider.of<UsersProvider>(context, listen: false).fetchUsers();
     super.initState();
   }
 
@@ -23,39 +23,23 @@ class _UserScreebState extends State<UserScreeb> {
         appBar: AppBar(
           title: const Text("Users Data"),
         ),
-        body: Consumer<ProductProvider>(
-          builder: (context, _userModel, child) {
-            final user = _userModel.users;
-            // ignore: unnecessary_null_comparison
-            return _userModel == null
+        body: Consumer<UsersProvider>(
+          builder: (context, userModel, child) {
+            final user = userModel.users;
+
+            return user == null
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
                 : ListView.builder(
                     itemCount: user.length,
                     itemBuilder: (context, index) {
-                      return Card(
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(user[index].id.toString()),
-                                Text(user[index].username.toString()),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 20.0,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(user[index].email.toString()),
-                                Text(user[index].website.toString()),
-                              ],
-                            ),
-                          ],
-                        ),
+                      return ListTile(
+                        leading: CircleAvatar(
+                            backgroundImage:
+                                NetworkImage(user[index]['avatar'])),
+                        title: Text(user[index]['first_name']),
+                        subtitle: Text(user[index]['last_name']),
                       );
                     },
                   );

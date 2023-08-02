@@ -3,7 +3,7 @@ import 'package:ecommerce/screens/categoryitem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class MyHomePage extends StatelessWidget {
+class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categoryProvider =
@@ -30,7 +30,7 @@ class MyHomePage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => CategoryItemsScreen(
+                                builder: (context) => CategoryItemScreen(
                                       category: category,
                                     )));
                       },

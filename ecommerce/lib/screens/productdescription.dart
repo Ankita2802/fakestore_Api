@@ -149,7 +149,7 @@ class _ProductDescriptionsState extends State<ProductDescriptions> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => CartScreen(
-                                        Userid: productProvider.product!.id)));
+                                        userid: productProvider.product!.id)));
                           },
                           child: Container(
                             height: 40,

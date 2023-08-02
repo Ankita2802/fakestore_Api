@@ -39,10 +39,15 @@ class _HomeViewState extends State<HomeView> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddProductScreen()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const AddProductScreen()));
         },
-        child: const Text("Add Product"),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: const Text("Add"),
+        ),
       ),
     );
   }

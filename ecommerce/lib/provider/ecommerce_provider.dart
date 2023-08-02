@@ -163,8 +163,8 @@ class ProductProvider with ChangeNotifier {
   }
 
   //get for user list
-  List<UserModel> _users = [];
-  List<UserModel> get users => _users;
+  List<Datum> _users = [];
+  List<Datum> get users => _users;
 
   Future<bool> fetchUser() async {
     try {
@@ -172,9 +172,8 @@ class ProductProvider with ChangeNotifier {
       debugPrint(responseList.toString());
       if (responseList.isNotEmpty) {
         for (var item in responseList) {
-          UserModel user = UserModel.fromJson(item);
+          Datum user = Datum.fromJson(item);
           users.add(user);
-          notifyListeners();
         }
         _users = users;
         notifyListeners();

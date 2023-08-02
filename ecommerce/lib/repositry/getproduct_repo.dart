@@ -60,7 +60,7 @@ class StoreApiRepository extends BaseRepository {
   }
 
   Future getUser() async {
-    final response = await getHttp(api: AppUrl.usersEndpoint);
+    final response = await getHttp(api: AppUrl.personEndpoint);
     log(response.body, name: 'getUserist');
     return json.decode(response.body);
   }
@@ -84,7 +84,6 @@ class StoreApiRepository extends BaseRepository {
 
   //put pan PostCommentsModel
   Future editPanApi(Map<String, dynamic> data, int postid) async {
-    final apiUrl = '${AppUrl.postcomments}/$postid';
     final response = await postHttp(
       api: AppUrl.postcomments,
       data: data,

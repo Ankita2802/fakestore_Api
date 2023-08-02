@@ -8,7 +8,7 @@ class BaseRepository {
   Future<http.Response> getHttp({
     required String api,
   }) async {
-    final url = AppUrl.baseposturl + api;
+    final url = AppUrl.baseUrl + api;
     log(url, name: 'getHttp');
 
     final response = await http.get(
@@ -24,7 +24,7 @@ class BaseRepository {
     required Map<String, dynamic> data,
     required String api,
   }) async {
-    final url = AppUrl.baseposturl + api;
+    final url = AppUrl.baseUrl + api;
     log(url, name: 'postHttp');
     log(data.toString(), name: '$api data');
     log(json.encode(data).toString(), name: "encode data post http");

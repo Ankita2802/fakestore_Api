@@ -1,10 +1,9 @@
-import 'package:ecommerce/provider/ecommerce_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class CartScreen extends StatefulWidget {
-  int Userid;
-  CartScreen({super.key, required this.Userid});
+  int userid;
+  CartScreen({super.key, required this.userid});
 
   @override
   State<CartScreen> createState() => _CartScreenState();

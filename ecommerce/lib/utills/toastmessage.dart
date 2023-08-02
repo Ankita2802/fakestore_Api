@@ -17,4 +17,9 @@ class Utils {
       toastLength: Toast.LENGTH_LONG,
     );
   }
+
+  static snackBar(String message, BuildContext context) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(backgroundColor: Colors.amber, content: Text(message)));
+  }
 }
