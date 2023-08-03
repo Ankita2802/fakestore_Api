@@ -1,4 +1,5 @@
 import 'package:ecommerce/components/app_button.dart';
+import 'package:ecommerce/components/app_navigation.dart';
 import 'package:ecommerce/components/app_textfield_auth.dart';
 import 'package:ecommerce/provider/fantasty_provider.dart';
 import 'package:ecommerce/screens/Fantasy/homescreen.dart';
@@ -64,129 +65,140 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 controller: lastnameController,
                 labelText: 'Username',
                 hintText: 'Enter Your Username',
+                onChanged: (value) {
+                  servicesignup.name = value;
+                },
               ),
               CustomTextField(
                 controller: emailController,
                 labelText: 'Email',
                 hintText: 'Enter Your Email',
+                onChanged: (value) {
+                  servicesignup.email = value;
+                },
               ),
               CustomTextField(
                 controller: mobileController,
                 labelText: 'Mobile',
                 hintText: 'Enter Your Mobile',
+                onChanged: (value) {
+                  servicesignup.mobile = value;
+                },
               ),
               CustomTextField(
                 controller: dobController,
                 labelText: 'Dob',
                 hintText: 'Select Date of Birth',
                 icon: Icons.calendar_month_rounded,
+                onChanged: (value) {
+                  servicesignup.dateofb = value;
+                },
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Selct Gender?",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  RadioListTile(
-                    title: const Text("Male"),
-                    value: "male",
-                    groupValue: gender,
-                    onChanged: (value) {
-                      setState(() {
-                        gender = value.toString();
-                      });
-                    },
-                  ),
-                  RadioListTile(
-                    title: const Text("Female"),
-                    value: "female",
-                    groupValue: gender,
-                    onChanged: (value) {
-                      setState(() {
-                        gender = value.toString();
-                      });
-                    },
-                  ),
-                  RadioListTile(
-                    title: const Text("Other"),
-                    value: "other",
-                    groupValue: gender,
-                    onChanged: (value) {
-                      setState(() {
-                        gender = value.toString();
-                      });
-                    },
-                  ),
-                ],
-              ),
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     const Text(
+              //       "Selct Gender?",
+              //       style: TextStyle(fontSize: 18),
+              //     ),
+              //     RadioListTile(
+              //       title: const Text("Male"),
+              //       value: "male",
+              //       groupValue: gender,
+              //       onChanged: (value) {
+              //         servicesignup.setSelectedGender(value!);
+              //       },
+              //     ),
+              //     RadioListTile(
+              //       title: const Text("Female"),
+              //       value: "female",
+              //       groupValue: gender,
+              //       onChanged: (value) {
+              //         servicesignup.setSelectedGender(value!);
+              //       },
+              //     ),
+              //     RadioListTile(
+              //       title: const Text("Other"),
+              //       value: "other",
+              //       groupValue: gender,
+              //       onChanged: (value) {
+              //         servicesignup.setSelectedGender(value!);
+              //       },
+              //     ),
+              //   ],
+              // ),
+              for (var gender in genderList)
+                RadioListTile<String>(
+                  title: Text(gender),
+                  value: gender,
+                  groupValue: servicesignup.selectedGender,
+                  onChanged: (value) {
+                    servicesignup.setSelectedGender(value!);
+                  },
+                ),
               CustomTextField(
                 controller: addresController,
                 labelText: 'Address',
                 hintText: 'Enter Your address',
+                onChanged: (value) {
+                  servicesignup.addr = value.toString();
+                },
               ),
               CustomTextField(
                 controller: cityController,
                 labelText: 'City',
                 hintText: 'Enter Your City',
                 icon: Icons.keyboard_arrow_down,
+                onChanged: (value) {
+                  servicesignup.citys = value.toString();
+                },
               ),
               CustomTextField(
                 controller: pincodeController,
                 labelText: 'Pincode',
                 hintText: 'Enter Your Pincode',
+                onChanged: (value) {
+                  servicesignup.pin = value.toString();
+                },
               ),
               CustomTextField(
                 controller: stateController,
                 labelText: 'state',
                 hintText: 'Enter Your state',
                 icon: Icons.keyboard_arrow_down,
+                onChanged: (value) {
+                  servicesignup.states = value.toString();
+                },
               ),
               CustomTextField(
                 controller: countryController,
                 labelText: 'Country',
                 hintText: 'Enter Your Country',
+                onChanged: (value) {
+                  servicesignup.countrys = value.toString();
+                },
               ),
               CustomTextField(
                 controller: refrecode,
                 labelText: 'Referal Code*',
                 hintText: 'Enter Referal Code*',
+                onChanged: (value) {
+                  servicesignup.refcode = value.toString();
+                },
               ),
               CustomTextField(
                 controller: teamname,
                 labelText: 'Team Name',
                 hintText: 'Enter Your team name',
+                onChanged: (value) {
+                  servicesignup.teamn = value.toString();
+                },
               ),
               CustomButton(
                   title: 'Lets start',
                   onPresse: () async {
-                    if (lastnameController.text.isEmpty) {
-                      Utils.snackBar("Plase enter name", context);
-                    } else if (emailController.text.isEmpty) {
-                      Utils.snackBar("Plase enter email", context);
-                    } else if (mobileController.text.isEmpty) {
-                      Utils.snackBar("plase enter mobile", context);
-                    } else if (mobileController.text.length < 10) {
-                      Utils.snackBar('Mobilenumber must be 10 digit', context);
-                    } else if (addresController.text.isEmpty) {
-                      Utils.snackBar('please enter address', context);
-                    } else if (cityController.text.isEmpty) {
-                      Utils.snackBar('please enter city', context);
-                    } else if (pincodeController.text.isEmpty) {
-                      Utils.snackBar('please enter pincode', context);
-                    } else if (stateController.text.isEmpty) {
-                      Utils.snackBar('please enter state', context);
-                    } else if (countryController.text.isEmpty) {
-                      Utils.snackBar('please enter country', context);
-                    } else if (refrecode.text.isEmpty) {
-                      Utils.snackBar('please enter refercode', context);
-                    } else if (teamname.text.isEmpty) {
-                      Utils.snackBar('please enter teamname', context);
-                    } else {
-                      servicesignup.postRegister(
-                          emailController.text.toString(),
-                          mobileController.text.toString());
-                    }
+                    await servicesignup.postRegister();
+                    nextScreen(context, const VerificationScreen());
                   })
             ].map((child) {
               return Padding(

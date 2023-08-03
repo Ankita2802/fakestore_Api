@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +23,8 @@ class _DioGetScreenState extends State<DioGetScreen> {
           .get('https://protocoderspoint.com/jsondata/superheros.json');
       if (response.statusCode == 200) {
         setState(() {
-          jsondata = response.data['superheroes'] as List;
+          jsondata = response.data['superheros'] as List;
+          debugPrint(jsondata);
         });
       } else {
         log(response.statusCode.toString());
@@ -42,6 +42,8 @@ class _DioGetScreenState extends State<DioGetScreen> {
         itemBuilder: (context, index) {
           return ListTile(
             leading: Image.network(jsondata[index]['url']),
+            title: Text(jsondata[index]['name']),
+            subtitle: Text(jsondata[index]['']),
           );
         },
       ),

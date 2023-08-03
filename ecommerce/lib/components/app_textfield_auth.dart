@@ -9,6 +9,7 @@ class CustomTextField extends StatefulWidget {
   final IconData? icon;
   final String? helperText;
   final bool? obscureText;
+  final ValueChanged<String>? onChanged;
 
   const CustomTextField({
     super.key,
@@ -18,6 +19,7 @@ class CustomTextField extends StatefulWidget {
     this.icon,
     this.helperText,
     this.obscureText,
+    this.onChanged,
   });
 
   @override
@@ -95,6 +97,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               borderSide: BorderSide(color: AppColors.appBlack, width: 2.0),
             ),
           ),
+          onChanged: widget.onChanged,
         ),
       ),
     );

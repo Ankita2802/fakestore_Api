@@ -1,5 +1,6 @@
 import 'package:ecommerce/provider/fantasty_provider.dart';
 import 'package:ecommerce/screens/Fantasy/splash_screen.dart';
+import 'package:ecommerce/screens/dio/getapi.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,11 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<FantastyProvider>(
-      create: (context) => FantastyProvider(),
-      child: const MaterialApp(
-        home: SplashScreen(),
-      ),
+    // return ChangeNotifierProvider<FantastyProvider>(
+    //   create: (context) => FantastyProvider(),
+    //   child: const MaterialApp(
+    //     home: SplashScreen(),
+    //   ),
+    return MaterialApp(
+      home: DioGetScreen(),
     );
   }
 }

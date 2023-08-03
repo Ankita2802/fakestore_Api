@@ -2,6 +2,7 @@ import 'package:ecommerce/provider/fantasty_provider.dart';
 import 'package:ecommerce/theme/app_color.dart';
 import 'package:ecommerce/utills/toastmessage.dart';
 import 'package:flutter/material.dart';
+import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:provider/provider.dart';
 
 class VerificationScreen extends StatefulWidget {
@@ -40,39 +41,21 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  6,
-                  (index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: AppColors.goldcolor,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: TextFormField(
-                        controller: _codeController,
-                        keyboardType: TextInputType.number,
-                        maxLength: 1,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 24),
-                        onChanged: (code) {
-                          if (code.length == 1 && index < 5) {
-                            FocusScope.of(context).nextFocus();
-                          }
-                        },
-                        decoration: const InputDecoration(
-                          counterText: '',
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+              PinCodeTextField(
+                autofocus: true,
+                hideCharacter: false,
+                highlight: true,
+                highlightColor: Colors.blue,
+                defaultBorderColor: Colors.black,
+                hasTextBorderColor: Colors.green,
+                maxLength: 6,
+                pinBoxWidth: 40,
+                pinBoxHeight: 40,
+                pinTextStyle: const TextStyle(fontSize: 22.0),
+                onTextChanged: (value) {
+                  debugPrint(value);
+                  signupotp.mobiemaillotp = value;
+                },
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -81,12 +64,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   fixedSize: const Size(300, 50),
                 ),
                 onPressed: () {
-                  if (_codeController.text.isEmpty) {
-                    Utils.snackBar("Plase enter otp", context);
-                  } else {
-                    // signupotp.postRegisterOtp(_codeController.text.toString(),
-                    // _codeController.text.toString());
-                  }
+                  signupotp.otpverifications();
+                  // if (_codeController.text.isEmpty) {
+                  //   Utils.snackBar("Plase enter otp", context);
+                  // } else {
+                  //   signupotp.otpverifications();
+                  // }
                 },
                 child: _isVerifying
                     ? const CircularProgressIndicator()

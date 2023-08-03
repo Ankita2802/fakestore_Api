@@ -1,10 +1,11 @@
 import 'package:ecommerce/components/app_button.dart';
 import 'package:ecommerce/components/app_textfield_auth.dart';
+import 'package:ecommerce/provider/fantasty_provider.dart';
 import 'package:ecommerce/screens/Fantasy/otp_screen.dart';
 import 'package:ecommerce/screens/Fantasy/register_screen.dart';
 import 'package:ecommerce/theme/app_color.dart';
-import 'package:ecommerce/theme/theme_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,6 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailmobileController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final login = Provider.of<FantastyProvider>(context, listen: true);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("LoginScreen"),
@@ -45,6 +48,9 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: emailmobileController,
               hintText: "Email Mobile",
               labelText: "Email or Mobile no.",
+              onChanged: (value) {
+                login.loginmobeem = value;
+              },
             ),
             Row(
               children: [
@@ -60,7 +66,8 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             CustomButton(
                 title: "Send OTP",
-                onPresse: () {
+                onPresse: () async {
+                  await login.logoin();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
