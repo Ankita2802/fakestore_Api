@@ -41,7 +41,9 @@ class _DioGetScreenState extends State<DioGetScreen> {
         itemCount: jsondata == null ? 0 : jsondata.length,
         itemBuilder: (context, index) {
           return ListTile(
-            leading: Image.network(jsondata[index]['url']),
+            leading: ClipRRect(
+                borderRadius: BorderRadius.circular(80.0),
+                child: Image.network(jsondata[index]['url'])),
             title: Text(jsondata[index]['name']),
             subtitle: Text(jsondata[index]['']),
           );

@@ -6,7 +6,9 @@ import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:provider/provider.dart';
 
 class VerificationScreen extends StatefulWidget {
-  const VerificationScreen({super.key});
+  final bool formKey;
+
+  const VerificationScreen({super.key, required this.formKey});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -16,7 +18,6 @@ class VerificationScreen extends StatefulWidget {
 class _VerificationScreenState extends State<VerificationScreen> {
   final TextEditingController _codeController = TextEditingController();
   bool _isVerifying = false;
-
   @override
   Widget build(BuildContext context) {
     final signupotp = Provider.of<FantastyProvider>(context, listen: true);
@@ -64,12 +65,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   fixedSize: const Size(300, 50),
                 ),
                 onPressed: () {
-                  signupotp.otpverifications();
-                  // if (_codeController.text.isEmpty) {
-                  //   Utils.snackBar("Plase enter otp", context);
-                  // } else {
-                  //   signupotp.otpverifications();
-                  // }
+                  otp();
                 },
                 child: _isVerifying
                     ? const CircularProgressIndicator()
@@ -80,5 +76,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
         ),
       ),
     );
+  }
+
+  void otp() {
+    if (widget.formKey) {
+      Provider.of<FantastyProvider>(context, listen: false).otpverifications();
+    } else {
+      Provider.of<FantastyProvider>(context, listen: false).otplogin();
+    }
   }
 }

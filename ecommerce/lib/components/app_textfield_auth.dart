@@ -10,17 +10,18 @@ class CustomTextField extends StatefulWidget {
   final String? helperText;
   final bool? obscureText;
   final ValueChanged<String>? onChanged;
+  final String? Function(String?)? validator;
 
-  const CustomTextField({
-    super.key,
-    required this.controller,
-    required this.labelText,
-    required this.hintText,
-    this.icon,
-    this.helperText,
-    this.obscureText,
-    this.onChanged,
-  });
+  const CustomTextField(
+      {super.key,
+      required this.controller,
+      required this.labelText,
+      required this.hintText,
+      this.icon,
+      this.helperText,
+      this.obscureText,
+      this.onChanged,
+      this.validator});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -98,6 +99,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
           ),
           onChanged: widget.onChanged,
+          validator: widget.validator,
         ),
       ),
     );

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecommerce/components/app_sharepre.dart';
 import 'package:ecommerce/repositry/fantasty_reposiry.dart';
 import 'package:flutter/material.dart';
@@ -145,6 +147,7 @@ class FantastyProvider with ChangeNotifier {
         String message = responseData['message'];
         MySharedPreferences.instance
             .setStringValue("access_token", accessToken);
+
         MySharedPreferences.instance
             .setStringValue("refresh_token", refreshToken);
         MySharedPreferences.instance.setStringValue("userid", userId);
@@ -169,6 +172,51 @@ class FantastyProvider with ChangeNotifier {
     return false;
   }
 
+  Future<bool> otplogin() async {
+    String? userid;
+    String? verify;
+    String? otp;
+    try {
+      userid = MySharedPreferences.instance.getString('user id');
+      log(userid.toString(), name: "user-id");
+      verify = MySharedPreferences.instance.getString('verify');
+      log(verify.toString(), name: "verify");
+      otp = MySharedPreferences.instance.getString('otp_id');
+      log(otp.toString(), name: "otp");
+      Map<String, dynamic> request = {
+        "otp_id": otp,
+        "verify_for": verify,
+        "user_id": userid,
+        "otp": mobemaotp
+      };
+      setloading(true);
+      final responseData = await fantastyApiRepository.postLoginOtp(request);
+      developer.log(request.toString());
+      if (responseData['status_code'] == 200 ||
+          responseData['status_code'] == 201) {
+        developer.log(responseData.toString(), name: '======------');
+        String message = responseData['message'];
+
+        Fluttertoast.showToast(
+          msg: message,
+          backgroundColor: Colors.grey,
+        );
+        notifyListeners();
+        return true;
+      } else {
+        setloading(true);
+        Fluttertoast.showToast(
+          msg: 'something went wrong',
+          backgroundColor: Colors.grey,
+        );
+        developer.log(responseData.toString(), name: '======------');
+      }
+    } catch (e) {
+      developer.log("$e", name: "loginotp");
+    }
+    return false;
+  }
+
   Future<bool> logoin() async {
     try {
       Map<String, dynamic> request = {
@@ -182,6 +230,21 @@ class FantastyProvider with ChangeNotifier {
         setloading(false);
         developer.log(responseData.toString(), name: '======------');
         String message = responseData['message'];
+        String otpid = responseData['data']['otp_id'];
+        debugPrint(otpid);
+        String verifyfor = responseData['data']['verify_for'];
+        debugPrint(verifyfor);
+        String userid = responseData['data']['user_id'];
+        debugPrint(userid);
+        String otp =
+            MySharedPreferences.instance.setStringValue("otp_id", otpid);
+        String ver =
+            MySharedPreferences.instance.setStringValue("verify", verifyfor);
+        String user =
+            MySharedPreferences.instance.setStringValue("user id", userid);
+        log("__________________$otp");
+        log("__________________$ver");
+        log("__________________$user");
         notifyListeners();
         Fluttertoast.showToast(
           msg: message,

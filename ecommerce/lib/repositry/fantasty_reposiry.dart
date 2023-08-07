@@ -26,4 +26,12 @@ class FantastyApiRepository extends BaseRepository {
     log(response.body, name: 'postLogin');
     return json.decode(response.body);
   }
+
+  //logi otp apo
+  Future postLoginOtp(Map<String, dynamic> data) async {
+    final response =
+        await postHttp(api: AppUrl.loginotp, data: data, token: true);
+    log(response.body, name: 'postLoginotp');
+    return json.decode(response.body);
+  }
 }
