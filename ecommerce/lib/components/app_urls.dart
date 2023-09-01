@@ -16,7 +16,7 @@ class AppUrl {
   static const postcomments = "/posts";
 
   //fantasty
-  static const baseUrl = "http://192.168.1.5:8000";
+  static const baseUrl = "http://13.233.42.101";
   static const register = "/user/register";
   static const registerotp = "/user/verify_otp";
   static const login = "/user/login";

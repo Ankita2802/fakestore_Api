@@ -64,7 +64,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   backgroundColor: AppColors.goldcolor,
                   fixedSize: const Size(300, 50),
                 ),
-                onPressed: () {
+                onPressed: () async {
                   otp();
                 },
                 child: _isVerifying

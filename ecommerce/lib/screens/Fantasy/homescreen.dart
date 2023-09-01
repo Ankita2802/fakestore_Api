@@ -10,7 +10,7 @@ class homescreen extends StatefulWidget {
 class _homescreenState extends State<homescreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.deepOrange,
     );
   }

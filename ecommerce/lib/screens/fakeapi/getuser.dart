@@ -1,5 +1,6 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:ecommerce/provider/apiusers_provider.dart';
-import 'package:ecommerce/provider/ecommerce_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

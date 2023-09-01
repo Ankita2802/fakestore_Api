@@ -36,7 +36,7 @@ class _PostUserScreenState extends State<PostUserScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("post Form"),
+        title: const Text("post Form"),
         centerTitle: true,
         backgroundColor: Colors.cyanAccent,
       ),

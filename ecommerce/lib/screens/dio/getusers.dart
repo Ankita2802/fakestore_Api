@@ -53,7 +53,7 @@ class _UserScreenState extends State<UserScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: users.isEmpty
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
@@ -69,7 +69,7 @@ class _UserScreenState extends State<UserScreen> {
                       onTap: () {
                         DeleteData(users[index]['id']);
                       },
-                      child: Icon(Icons.delete)),
+                      child: const Icon(Icons.delete)),
                 );
               },
             ),

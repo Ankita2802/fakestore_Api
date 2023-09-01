@@ -88,7 +88,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      final newProduct = services.postProductAdd(
+                      services.postProductAdd(
                         _title,
                         _price.toString(),
                         _description,

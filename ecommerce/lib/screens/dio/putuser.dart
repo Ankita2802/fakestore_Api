@@ -38,7 +38,7 @@ class _PutUserScreenState extends State<PutUserScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("put Form"),
+        title: const Text("put Form"),
         centerTitle: true,
         backgroundColor: Colors.cyanAccent,
       ),

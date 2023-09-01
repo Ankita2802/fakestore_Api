@@ -6,6 +6,7 @@ class CustomButton extends StatelessWidget {
   final String title;
   final bool loading;
   final VoidCallback onPresse;
+
   const CustomButton(
       {super.key,
       required this.title,

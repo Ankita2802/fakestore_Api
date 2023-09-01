@@ -10,7 +10,7 @@ class PostCommentScreen extends StatefulWidget {
 class _PostCommentScreenState extends State<PostCommentScreen> {
   final _formKey = GlobalKey<FormState>();
   String _title = '';
-  int _userid = 1;
+  var _userid = 1;
   String _body = '';
 
   @override
@@ -63,8 +63,6 @@ class _PostCommentScreenState extends State<PostCommentScreen> {
                     _formKey.currentState!.save();
 
                     // Create a new product instance
-                    final newProduct =
-                        services.postCommetsAdd(_userid, _title, _body);
 
                     Navigator.pop(context);
                   }

@@ -44,9 +44,9 @@ class _HomeViewState extends State<HomeView> {
               MaterialPageRoute(
                   builder: (context) => const AddProductScreen()));
         },
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: const Text("Add"),
+        child: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text("Add"),
         ),
       ),
     );
